@@ -5,7 +5,8 @@ import { Component } from '@angular/core';  // Component direktíva importálás
 
 @Component({
     selector: 'app-new',
-    templateUrl: './new.component.html'
+    templateUrl: './new.component.html',
+    styleUrls: ['./new.component.css']
 })
 
 export class newComponent
