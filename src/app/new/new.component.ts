@@ -1,3 +1,13 @@
+import { Component } from '@angular/core';  // Component direktíva importálása
+
+// dekorátor, függvényhívás, aminek a paramétereit állítjuk be (tömb) 
+// dekorátor a component class-hoz fog tartozni, lefut a class előtt
+
+@Component({
+    selector: 'app-new',
+    templateUrl: './new.component.html'
+})
+
 export class newComponent
 {
     title = 'component folder and file added manually';
