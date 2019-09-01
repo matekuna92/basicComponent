@@ -7,6 +7,10 @@ import { EventComponent } from './event/event.component';
 import { AlmaComponent } from './alma/alma.component';
 import { newComponent } from './new/new.component';
 
+// oda-vissza bind ngModel-en keresztül működik, ehhez szükséges külön beimportálni a formsModule-t, 
+// hogy működjön * !
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +20,8 @@ import { newComponent } from './new/new.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule // *
   ],
   providers: [],
   bootstrap: [AppComponent]

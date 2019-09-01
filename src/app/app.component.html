@@ -553,7 +553,18 @@
   <p> ngClass  </p>
 </div>
 
-<button (click) = "toggle()" (mouseover) = "demo($event)"> Toggle </button>
+<button 
+	(click) = "toggle()" 
+	(dblclick) = "demo($event)"
+	[disabled] = "clickedStatus"
+	> Toggle
+ </button>
+
+<input type="text" [(ngModel)] = "inputContent">
+
+<div> {{inputContent}} </div>
+
+
 
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
