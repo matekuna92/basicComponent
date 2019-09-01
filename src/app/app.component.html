@@ -547,6 +547,14 @@
 
 </div>
 
+<div [ngClass]="{ 'valami': show }"> <!-- https://angular.io/api/common/NgClass -->
+  <!-- <some-element [ngClass]="{'first': true, 'second': true, 'third': false}">...</some-element>
+  1 class-t 1 változó függvényében szeretnék rátenni az elemre -->
+  <p> ngClass  </p>
+</div>
+
+<button (click) = "toggle()" (mouseover) = "demo($event)"> Toggle </button>
+
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->

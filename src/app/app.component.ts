@@ -9,4 +9,22 @@ export class AppComponent {
   title = 'basicComponent';
   items = ["Running", "Walking", "Cycling", "Swimming"];
   show = false;
+
+  toggle()
+  {
+    this.show = !this.show;   // egyenlővé teszi a változó negáltjával
+  }
+/* ha sima event-et adok meg paraméterként, az IDE nem dobja fel javaslatként a mouseover esemény
+tualjdonságait, amit a böngésző konzolban látunk (altKey, clientX, offsetX, stb), de ha konkrétan megadjuk, 
+hogy mouse event-et várunk, akkor már felismeri az IDE a típust, és megjelenik a lehetséges property-k listája */
+  
+	/* demo(event)
+	{
+		console.log(event);
+	} */
+
+	demo(evt: MouseEvent)
+	{
+		console.log(evt.clientX);
+	}
 }
