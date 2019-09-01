@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'basicComponent';
   items = ["Running", "Walking", "Cycling", "Swimming"];
   show = false;
-  clickedStatus = false;
+  clickedStatus = true;
  // inputContent: string = "string1, string2, string3";
   inputContent: string;
 

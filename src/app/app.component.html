@@ -556,9 +556,10 @@
 <button 
 	(click) = "toggle()" 
 	(dblclick) = "demo($event)"
-	[disabled] = "clickedStatus"
 	> Toggle
  </button>
+
+<button [disabled] = "clickedStatus">Disabled button</button>
 
 <input type="text" [(ngModel)] = "inputContent">
 
