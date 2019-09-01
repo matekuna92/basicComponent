@@ -10,11 +10,13 @@ export class AppComponent {
   items = ["Running", "Walking", "Cycling", "Swimming"];
   show = false;
   clickedStatus = false;
-  inputContent: string = "string1, string2, string3";
+ // inputContent: string = "string1, string2, string3";
+  inputContent: string;
 
   toggle()
   {
-    this.show = !this.show;   // egyenlővé teszi a változó negáltjával
+	this.show = !this.show;   // egyenlővé teszi a változó negáltjával
+	this.inputContent = "string1, string2, string3";
   }
 /* ha sima event-et adok meg paraméterként, az IDE nem dobja fel javaslatként a mouseover esemény
 tualjdonságait, amit a böngésző konzolban látunk (altKey, clientX, offsetX, stb), de ha konkrétan megadjuk, 
