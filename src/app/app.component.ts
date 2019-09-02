@@ -13,6 +13,21 @@ export class AppComponent {
  // inputContent: string = "string1, string2, string3";
   inputContent: string;
 
+  pipeDemo = [
+    {
+      'id': '1',
+      'name': 'name1'
+    },
+    {
+      'id': '2',
+      'name': 'name2'
+    },
+    {
+      'id': '3',
+      'name': 'name3'
+    },
+  ];
+
   toggle()
   {
 	this.show = !this.show;   // egyenlővé teszi a változó negáltjával
