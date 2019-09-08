@@ -1,0 +1,10 @@
+<ul>
+
+    <li *ngFor="let evt of events"> {{ evt.name }} </li>
+
+</ul>
+
+<!-- debug trükk - előre formázott struktúrában leellenőrizzük a változót, hogy megfelelő-e egyáltalán 
+az adatszerkezet -->
+
+<pre> {{ events | json }} </pre>

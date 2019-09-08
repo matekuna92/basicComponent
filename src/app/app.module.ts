@@ -10,13 +10,15 @@ import { newComponent } from './new/new.component';
 // oda-vissza bind ngModel-en keresztül működik, ehhez szükséges külön beimportálni a formsModule-t, 
 // hogy működjön * !
 import { FormsModule } from '@angular/forms';
+import { ListdemoComponent } from './listdemo/listdemo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventComponent,
     AlmaComponent,
-    newComponent
+    newComponent,
+    ListdemoComponent
   ],
   imports: [
     BrowserModule,
