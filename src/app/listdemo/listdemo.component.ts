@@ -40,4 +40,13 @@ export class ListdemoComponent {
     }
     ]
   }
+
+  delete( id:number )
+  {
+    // filter: [o,x,o,x](?o?) --> [o,o] - alaptömböt nem módosítja
+    this.events = this.events.filter( (evt: EventModel) => evt.id !== id ); 
+    /* itt szándékosan felülírjuk az eredeti tömböt a filtered változattal
+    id alapján minden elemet visszaadunk, egyedül az az elem kerül ki a tömbből, amelyet a click eseménynél
+    törültünk --> <button (click)="delete(evt.id)"> */
+  }
 }
