@@ -1,12 +1,17 @@
 <ul>
 
     <li *ngFor="let evt of events"> {{ evt.name }} 
-
-    <button (click)="delete(evt.id)"> Remove </button>
+    
+        <img [src] = "evt.pic" width="50px" height="50px">
+        <button (click)="delete(evt.id)"> Remove </button>
 
     </li>
 
 </ul>
+
+<input type="text" #newEventNameInput>  <!-- referencia létrehozása az eseményhez, ezzel a névvel
+hivatkozhatok rá innentől a lenti sorban, és a .ts-ben is -->
+<button (click)="add(newEventNameInput)"> Save value </button>
 
 <!-- debug trükk - előre formázott struktúrában leellenőrizzük a változót, hogy megfelelő-e egyáltalán 
 az adatszerkezet -->
