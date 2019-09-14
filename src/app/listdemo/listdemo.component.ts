@@ -1,11 +1,25 @@
 import { Component } from '@angular/core';
+import { EventModel } from './event-model';
 
+/* best practise: külön class file-ban tároljuk, itt csak importáljuk
 export class EventModel
 {
 	id: number;
   name: string;
   pic: string;
+
+  /* létrehozunk egy konstruktort, így megadható default érték a property-kre 
+   -> ez megoldja a lenti problémát a hozzáadás függvényben, ahol csak eventModel típusú 
+   adatszerkezetettel bővíthető a tömb, és kötelező mind 3 értéket megadni 
+
+  constructor(id = 0, name = '', pic = '')
+  {
+    this.id = id;
+    this.name = name;
+    this.pic = pic;
+  }
 }
+*/
 
 @Component({
   selector: 'app-listdemo',
@@ -59,7 +73,22 @@ export class ListdemoComponent {
 
   add(newEventNameInput)
   {
+  //  newEventNameInput.value = ''; // nullázom, különben az input mezőben marad az előző érték minden alkalommal
+  
+    /* nem működik, mert a value egyszerű stringet tartalmaz, nem egyezik meg a model-ben megadott 
+    adatszerkezettel! --> id, name, pic szükséges minden objektumhoz -> nem tudjuk, milyen id-t adjunk meg */
+   
+    // this.events = [...this.events, newEventNameInput.value];
+
+    /* ha kihagyom az id-t, akkor not assignable to parameter of type 'number' hiba:
+    a konstruktorban id: number típust adtunk meg, így az első argumentumnak szám típusnak kell lennie */
+    
+    // this.events = [...this.events, new EventModel('alma')];
+
     console.log(newEventNameInput.value);
-    newEventNameInput.value = ''; // nullázom, különben az input mezőben marad az előző érték minden alkalommal
+    this.events = [...this.events, new EventModel(6, newEventNameInput.value)];
+    newEventNameInput.value = '';
+
+    console.log(this.events);
   }
 }
