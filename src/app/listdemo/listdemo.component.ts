@@ -86,7 +86,13 @@ export class ListdemoComponent {
     // this.events = [...this.events, new EventModel('alma')];
 
     console.log(newEventNameInput.value);
-    this.events = [...this.events, new EventModel(6, newEventNameInput.value)];
+
+    // reduce függvénnyel megkeressük az aktuális legnagyobb id-t a tömbben, és ezt növeljük 1-el
+    // az új elem esetén, így garantáltan mindig egyéni ID-t kapunk
+    const maxId = this.events.reduce( (x,y) => x.id > y.id ? x : y).id;
+    console.log(maxId);
+    
+    this.events = [...this.events, new EventModel(maxId + 1, newEventNameInput.value)];
     newEventNameInput.value = '';
 
     console.log(this.events);
