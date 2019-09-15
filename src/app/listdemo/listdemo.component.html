@@ -9,9 +9,21 @@
 
 </ul>
 
-<input type="text" #newEventNameInput>  <!-- referencia létrehozása az eseményhez, ezzel a névvel
-hivatkozhatok rá innentől a lenti sorban, és a .ts-ben is -->
-<button (click)="add(newEventNameInput)"> Save value </button>
+<div>
+
+    <label for="eventname"> Esemény neve: </label>
+    <input type="text" #newEventNameInput id="eventname">  <!-- referencia létrehozása az eseményhez, ezzel a névvel
+    hivatkozhatok rá innentől a lenti sorban, és a .ts-ben is -->
+</div>
+
+<div>
+
+    <label for="eventpic"> Eseményhez tartozó kép URL-je: </label>
+    <input type="text" #newEventPicInput id="eventpic">
+
+</div>
+
+<button (click)="add(newEventNameInput, newEventPicInput)"> Save value </button>
 
 <!-- debug trükk - előre formázott struktúrában leellenőrizzük a változót, hogy megfelelő-e egyáltalán 
 az adatszerkezet -->

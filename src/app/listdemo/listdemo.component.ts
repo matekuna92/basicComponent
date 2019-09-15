@@ -71,7 +71,7 @@ export class ListdemoComponent {
     törültünk --> <button (click)="delete(evt.id)"> */
   }
 
-  add(newEventNameInput)
+  add(newEventNameInput, newEventPicInput)
   {
   //  newEventNameInput.value = ''; // nullázom, különben az input mezőben marad az előző érték minden alkalommal
   
@@ -92,8 +92,9 @@ export class ListdemoComponent {
     const maxId = this.events.reduce( (x,y) => x.id > y.id ? x : y).id;
     console.log(maxId);
     
-    this.events = [...this.events, new EventModel(maxId + 1, newEventNameInput.value)];
+    this.events = [...this.events, new EventModel(maxId + 1, newEventNameInput.value, newEventPicInput.value)];
     newEventNameInput.value = '';
+    newEventPicInput.value = '';
 
     console.log(this.events);
   }
