@@ -26,9 +26,13 @@ export class EventModel
   templateUrl: './listdemo.component.html',
   styleUrls: ['./listdemo.component.css']
 })
+
 export class ListdemoComponent {
 //  events: any[];	// bármilyen típusú elemeket tároló tömb
     events: EventModel[]; // EventModel-ben megadott adatszerkezetű elemeket várunk a tömbbe
+    /* új változó, ami majd az aktuális értéket tartalmazza az edit eseménynél,
+    az edit gombra kattintva a két input mező értéke az aktuális name és pic érték lesz */
+    modifyEvent: EventModel;  
 
   constructor()
   {
@@ -60,6 +64,14 @@ export class ListdemoComponent {
       pic: 'https://miro.medium.com/max/285/1*QR2SBNwG75LyY5uwqWpN3A.png'
     }
     ]
+
+    /* cannot read name of undefined error: a legeleső alkalommal a modigyEvent változó
+    még üres, így a konstruktorban meg kell adni egy üres, alapértelmezett értéket neki 
+    üres string viszont nem adható meg, mert az event-model konstruktora id-t vár elsőnek,
+    majd ezután a name stringet --> azokat a paramétereket, amiket mindig elvárok, a paraméterlista
+    elejére kell tenni, mert ez alapján fogja keresni őket. Jelenleg viszont az id az első paraméter,
+    az pedig nem egyezik az üres string típussal */
+    this.modifyEvent = new EventModel('');
   }
 
   delete( id: number )
@@ -92,10 +104,16 @@ export class ListdemoComponent {
     const maxId = this.events.reduce( (x,y) => x.id > y.id ? x : y).id;
     console.log(maxId);
     
-    this.events = [...this.events, new EventModel(maxId + 1, newEventNameInput.value, newEventPicInput.value)];
+    this.events = [...this.events, new EventModel(newEventNameInput.value, maxId + 1, newEventPicInput.value)];
     newEventNameInput.value = '';
     newEventPicInput.value = '';
 
     console.log(this.events);
+  }
+
+  edit(id: number)
+  {
+    // filter után a tömb már csak azt az 1 elemet tartalmazza, aminek az id-ja az aktuális id
+    this.modifyEvent = this.events.filter( (ev) => ev.id === id)[0];
   }
 }
