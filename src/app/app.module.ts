@@ -11,6 +11,7 @@ import { newComponent } from './new/new.component';
 // hogy működjön * !
 import { FormsModule } from '@angular/forms';
 import { ListdemoComponent } from './listdemo/listdemo.component';
+import { MypipePipe } from './listdemo/mypipe.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ListdemoComponent } from './listdemo/listdemo.component';
     EventComponent,
     AlmaComponent,
     newComponent,
-    ListdemoComponent
+    ListdemoComponent,
+    MypipePipe
   ],
   imports: [
     BrowserModule,

@@ -83,8 +83,11 @@ export class ListdemoComponent {
     törültünk --> <button (click)="delete(evt.id)"> */
   }
 
-  add(newEventNameInput, newEventPicInput)
+  /* az add fvg át lett nevezve save-re, mert már nem csak hozzáadunk, hanem feltétel alapján
+  szerkesztünk is, ha már létezik az elem */
+  save(newEventNameInput, newEventPicInput)
   {
+    console.log(newEventNameInput.value);
   //  newEventNameInput.value = ''; // nullázom, különben az input mezőben marad az előző érték minden alkalommal
   
     /* nem működik, mert a value egyszerű stringet tartalmaz, nem egyezik meg a model-ben megadott 
@@ -97,18 +100,41 @@ export class ListdemoComponent {
     
     // this.events = [...this.events, new EventModel('alma')];
 
-    console.log(newEventNameInput.value);
+    // ha a modifyEvent id 0, akkor még nem jött létre elem, így nincs id sem, tehát új elemet adunk hozzá
+    if( this.modifyEvent.id == 0 )
+    {
+      // reduce függvénnyel megkeressük az aktuális legnagyobb id-t a tömbben, és ezt növeljük 1-el
+      // az új elem esetén, így garantáltan mindig egyéni ID-t kapunk
+      const maxId = this.events.reduce( (x,y) => x.id > y.id ? x : y).id;
+      console.log(maxId);
+      
+      this.events = [...this.events, new EventModel(newEventNameInput.value, maxId + 1, newEventPicInput.value)];
+      newEventNameInput.value = '';
+      newEventPicInput.value = '';
 
-    // reduce függvénnyel megkeressük az aktuális legnagyobb id-t a tömbben, és ezt növeljük 1-el
-    // az új elem esetén, így garantáltan mindig egyéni ID-t kapunk
-    const maxId = this.events.reduce( (x,y) => x.id > y.id ? x : y).id;
-    console.log(maxId);
-    
-    this.events = [...this.events, new EventModel(newEventNameInput.value, maxId + 1, newEventPicInput.value)];
-    newEventNameInput.value = '';
-    newEventPicInput.value = '';
-
-    console.log(this.events);
+      console.log(this.events);
+    }
+    // egyébként már nem 0 az id, tehát létezik az elem --> szerkesztés, megkeresni id alapján
+    else
+    {
+      this.events = this.events.map( (ev) => {
+        if( ev.id === this.modifyEvent.id )
+        {
+          // visszatérünk egy objektummal az új bejövő input és a régi tartalom alapján
+          return {
+            id: ev.id,  // marad a régi id, amit megtaláltunk
+            name: newEventNameInput.value,    // az input field új értékei lesznek az id-hoz tartozó object új értékei
+            pic: newEventPicInput.value
+          }
+        }
+        // ha a sorban egy olyan elemen vagyunk, amit nem akarunk szerkeszteni, visszatérünk önmagával
+        // módosítás során az adott elem változatlanul jelenjen meg az új tömbbe is
+        else
+        {
+          return ev;
+        }
+      });
+    }
   }
 
   edit(id: number)
